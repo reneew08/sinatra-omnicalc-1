@@ -39,3 +39,14 @@ get("/payment/results") do
   @monthly_payment=(@c_apr*@user_pv)/(1-((1+@c_apr)**(-@c_years)))
   erb(:payment_result)
 end
+
+get("/random/new") do
+  erb(:random)
+end
+
+get("/random/results") do
+  @user_min=params.fetch("user_min").to_f
+  @user_max=params.fetch("user_max").to_f
+  @random=rand(@user_min..@user_max)
+  erb(:random_result)
+end
